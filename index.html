@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelpCode</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #FDE0C0; padding: 20px; text-align: center; }
+        .container { width: 100%; max-width: 400px; text-align: center; position: relative; }
+        .logo-large { width: 100%; max-width: 250px; margin-bottom: 20px; }
+        .logo-small { width: 50px; position: fixed; bottom: 15px; right: 15px; }
+        form { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); text-align: left; width: 100%; }
+        label { font-weight: bold; display: block; margin-top: 10px; }
+        select, textarea, input, button { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; }
+        button { background: #893D0D; color: white; border: none; cursor: pointer; font-size: 16px; margin-top: 15px; }
+        button:hover { background: #6A2E09; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="Logo_grande.png" alt="Logo Grande" class="logo-large">
+        <form id="supportForm">
+            <label for="categoria">Quem precisa de apoio?</label>
+            <select name="categoria" id="categoria">
+                <option value="artistas">Artistas</option>
+                <option value="expositores">Expositores</option>
+                <option value="equipe">Equipe</option>
+                <option value="publico">Público</option>
+            </select>
+            <label for="localizacao">Onde você se localiza?</label>
+            <input type="text" name="localizacao" id="localizacao" placeholder="Digite sua localização">
+            <label for="mensagem">Qual tipo de apoio você precisa?</label>
+            <textarea name="mensagem" id="mensagem" rows="4" placeholder="Descreva aqui..." required></textarea>
+            <button type="button" onclick="enviarMensagem()">Enviar</button>
+        </form>
+    </div>
+    <img src="Logo_pequena.png" alt="Logo Pequeno" class="logo-small">
+
+    <script>
+        function enviarMensagem() {
+            let categoria = document.getElementById("categoria").value;
+            let localizacao = document.getElementById("localizacao").value;
+            let mensagem = document.getElementById("mensagem").value;
+            let numeroWhatsapp = "+5511970216215"; // Substitua pelo número correto
+            let linkWhatsapp = `https://api.whatsapp.com/send?phone=${numeroWhatsapp}&text=Quem precisa de apoio: ${categoria}%0ALocalização: ${localizacao}%0ATipo de apoio: ${mensagem}`;
+            window.location.href = linkWhatsapp;
+        }
+    </script>
+</body>
+</html>
